@@ -10,10 +10,19 @@ public class MakingAThingMove : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody>();
+		Cursor.lockState = CursorLockMode.Locked;
+		Cursor.visible = false;
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
+		if (Input.GetKey (KeyCode.Escape)) {
+			Cursor.lockState = CursorLockMode.None;
+			Cursor.visible = true;
+		} else if(Input.anyKey){
+			Cursor.lockState = CursorLockMode.Locked;
+			Cursor.visible = false;
+		}
 		if(Input.GetKeyDown(KeyCode.Space))
 		{
 			if (rb.velocity.y < 0.1 && rb.velocity.y > -0.1) {
